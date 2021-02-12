@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import Header from '../components/Header';
 
 import Chats from '../screens/Chats';
 import Users from '../screens/Users';
@@ -9,8 +10,11 @@ import Users from '../screens/Users';
 const Tabs = createBottomTabNavigator();
 
 const TabNavigation = () => (
-  <NavigationContainer>
+  <>
+    <Header />
+
     <Tabs.Navigator
+      initialRouteName="Users"
       tabBarOptions={{
         activeBackgroundColor: '#fff',
         inactiveBackgroundColor: '#fff',
@@ -39,7 +43,7 @@ const TabNavigation = () => (
         component={Users}
       />
     </Tabs.Navigator>
-  </NavigationContainer>
+  </>
 );
 
 export default TabNavigation;
