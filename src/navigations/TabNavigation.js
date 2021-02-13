@@ -2,19 +2,14 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import Header from '../components/Header';
-
-import Chats from '../screens/Chats';
+import Chats from '../navigations/ChatNavigation';
 import Users from '../screens/Users';
 
 const Tabs = createBottomTabNavigator();
 
 const TabNavigation = () => (
   <>
-    <Header />
-
     <Tabs.Navigator
-      initialRouteName="Users"
       tabBarOptions={{
         activeBackgroundColor: '#fff',
         inactiveBackgroundColor: '#fff',
