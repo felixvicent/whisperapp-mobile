@@ -38,7 +38,7 @@ const Chats = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         data={chats}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => (
           <Chat data={item} onClick={handleChatRoomNavigation} />
         )}

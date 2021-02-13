@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -7,8 +8,16 @@ import Users from '../screens/Users';
 
 const Tabs = createBottomTabNavigator();
 
-const TabNavigation = () => (
-  <>
+const TabNavigation = () => {
+  const getTabBarVisibility = route => {
+    const routeName = getFocusedRouteNameFromRoute(route);
+    const hideOnScreens = ['ChatRoom'];
+    if (hideOnScreens.indexOf(routeName) > -1) {
+      return false;
+    }
+    return true;
+  };
+  return (
     <Tabs.Navigator
       tabBarOptions={{
         activeBackgroundColor: '#fff',
@@ -18,12 +27,13 @@ const TabNavigation = () => (
         keyboardHidesTabBar: true,
       }}>
       <Tabs.Screen
-        options={{
+        options={({ route }) => ({
           tabBarIcon: ({ color }) => (
             <Icon name="chat" size={28} color={color} />
           ),
           title: 'Conversas',
-        }}
+          tabBarVisible: getTabBarVisibility(route),
+        })}
         name="Chats"
         component={Chats}
       />
@@ -38,7 +48,7 @@ const TabNavigation = () => (
         component={Users}
       />
     </Tabs.Navigator>
-  </>
-);
+  );
+};
 
 export default TabNavigation;
