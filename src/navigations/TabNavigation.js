@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Chats from '../navigations/ChatNavigation';
-import Users from '../screens/Users';
+import Users from '../navigations/UsersNavigation';
 
 const Tabs = createBottomTabNavigator();
 
@@ -38,12 +38,13 @@ const TabNavigation = () => {
         component={Chats}
       />
       <Tabs.Screen
-        options={{
+        options={({ route }) => ({
           title: 'Pessoas',
           tabBarIcon: ({ color }) => (
             <Icon name="person" size={28} color={color} />
           ),
-        }}
+          tabBarVisible: getTabBarVisibility(route),
+        })}
         name="Users"
         component={Users}
       />
